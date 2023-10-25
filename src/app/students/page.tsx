@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 
 export default function PostsPage() {
-  const [posts, setPosts] = useState(null);
+  const [students, setStudents] = useState(null);
   useEffect(() => {
     async function getPosts() {
-      const response = await fetch("http://localhost:3001/api/posts");
+      const response = await fetch("http://localhost:3001/api/students");
       const result = await response.json();
-      if (result) setPosts(result);
+      if (result) setStudents(result);
     }
     getPosts();
     console.log("Post page render");
@@ -19,16 +19,16 @@ export default function PostsPage() {
           <tr>
             <th>No.</th>
             <th>Name</th>
-            <th>Content</th>
+            <th>Gmail</th>
           </tr>
         </thead>
         <tbody>
-          {posts?.map((item) => {
+          {students?.map((item) => {
             return (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>{item.content}</td>
+                <td>{item.email}</td>
               </tr>
             );
           })}
